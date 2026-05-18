@@ -65,7 +65,7 @@
         font-family: "JetBrains Mono", monospace;
         font-size: 13px;
         font-weight: 500;
-        color: var(--hi);
+        color: #c9a96e;
         letter-spacing: 0.04em;
       }
       .nav-links {
@@ -101,6 +101,29 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+      }
+      .hero-slogan {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .hero-slogan span {
+        color: #333;
+        transition: color 0.25s;
+        cursor: default;
+      }
+      .hero-slogan span:hover {
+        color: #c9a96e;
+      }
+      .hero-slogan .sep {
+        color: #1e1e1e;
+        margin: 0 8px;
+        pointer-events: none;
       }
       .hero-tag {
         font-family: "JetBrains Mono", monospace;
@@ -865,6 +888,12 @@
         >
       </div>
 
+      <div class="hero-slogan">
+        <span>Developer</span><span class="sep">/</span><span>Investor</span
+        ><span class="sep">/</span><span>Philanthropist</span
+        ><span class="sep">/</span><span>Father</span><span class="sep">/</span
+        ><span>Human</span>
+      </div>
       <h1>Алексей</h1>
 
       <div class="hero-bottom">
