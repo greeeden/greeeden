@@ -724,45 +724,77 @@
         overflow: hidden;
       }
       .hero-lines::before {
-        content: '';
+        content: "";
         position: absolute;
         inset: 0;
         background-image: repeating-linear-gradient(
           90deg,
           transparent,
           transparent calc(100% / 6 - 1px),
-          rgba(255,255,255,0.04) calc(100% / 6 - 1px),
-          rgba(255,255,255,0.04) calc(100% / 6)
+          rgba(255, 255, 255, 0.04) calc(100% / 6 - 1px),
+          rgba(255, 255, 255, 0.04) calc(100% / 6)
         );
       }
       .hero-scan {
         position: absolute;
-        left: 0; right: 0;
+        left: 0;
+        right: 0;
         height: 1px;
-        background: linear-gradient(90deg,
+        background: linear-gradient(
+          90deg,
           transparent 0%,
-          rgba(255,255,255,0.05) 20%,
-          rgba(255,255,255,0.15) 50%,
-          rgba(255,255,255,0.05) 80%,
+          rgba(255, 255, 255, 0.05) 20%,
+          rgba(255, 255, 255, 0.15) 50%,
+          rgba(255, 255, 255, 0.05) 80%,
           transparent 100%
         );
         animation: scan 7s ease-in-out infinite;
       }
       @keyframes scan {
-        0%   { top: 0%;   opacity: 0; }
-        8%   { opacity: 1; }
-        92%  { opacity: 1; }
-        100% { top: 100%; opacity: 0; }
+        0% {
+          top: 0%;
+          opacity: 0;
+        }
+        8% {
+          opacity: 1;
+        }
+        92% {
+          opacity: 1;
+        }
+        100% {
+          top: 100%;
+          opacity: 0;
+        }
       }
       .hero-corner {
         position: absolute;
         width: 20px;
         height: 20px;
       }
-      .hero-corner-tl { top: 60px; left: 48px; border-top: 1px solid rgba(255,255,255,0.18); border-left: 1px solid rgba(255,255,255,0.18); }
-      .hero-corner-tr { top: 60px; right: 48px; border-top: 1px solid rgba(255,255,255,0.18); border-right: 1px solid rgba(255,255,255,0.18); }
-      .hero-corner-bl { bottom: 0; left: 48px; border-bottom: 1px solid rgba(255,255,255,0.18); border-left: 1px solid rgba(255,255,255,0.18); }
-      .hero-corner-br { bottom: 0; right: 48px; border-bottom: 1px solid rgba(255,255,255,0.18); border-right: 1px solid rgba(255,255,255,0.18); }
+      .hero-corner-tl {
+        top: 60px;
+        left: 48px;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        border-left: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .hero-corner-tr {
+        top: 60px;
+        right: 48px;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        border-right: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .hero-corner-bl {
+        bottom: 0;
+        left: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        border-left: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .hero-corner-br {
+        bottom: 0;
+        right: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        border-right: 1px solid rgba(255, 255, 255, 0.18);
+      }
 
       @media (max-width: 640px) {
         .nav-links {
@@ -1257,7 +1289,7 @@
 
     <footer>
       <div class="fl">AK / Leadergreed</div>
-      <div class="fc">2025 — Алексей</div>
+      <div class="fc">2026 — Алексей</div>
       <div class="fls">
         <a
           href="https://www.upwork.com/freelancers/~01a1ede96b0e266a15"
