@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Алексей — Full Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0c0c0c;
+        --bg2: #141414;
+        --bg3: #1c1c1c;
+        --line: rgba(255, 255, 255, 0.08);
+        --line2: rgba(255, 255, 255, 0.16);
+        --muted: #666;
+        --dim: #333;
+        --text: #c8c8c8;
+        --hi: #f2f2f2;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(12, 12, 12, 0.94);
+        backdrop-filter: blur(16px);
+      }
+      .nav-logo {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--hi);
+        letter-spacing: 0.04em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--hi);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 120px 48px 72px;
+        border-bottom: 1px solid var(--line);
+        position: relative;
+      }
+      .hero-meta {
+        position: absolute;
+        top: 80px;
+        left: 48px;
+        right: 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .hero-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #4ade80;
+        animation: blink 2.5s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      h1 {
+        font-size: clamp(56px, 7.5vw, 104px);
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -0.035em;
+        color: var(--hi);
+        margin-bottom: 48px;
+      }
+
+      .hero-bottom {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 40px;
+      }
+      .hero-desc {
+        font-size: 16px;
+        color: var(--muted);
+        max-width: 420px;
+        line-height: 1.75;
+      }
+      .hero-aside {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 20px;
+        flex-shrink: 0;
+      }
+      .stats {
+        display: flex;
+      }
+      .stat {
+        padding: 18px 28px;
+        border: 1px solid var(--line);
+        border-right: none;
+        text-align: center;
+        min-width: 90px;
+      }
+      .stat:last-child {
+        border-right: 1px solid var(--line);
+      }
+      .stat-n {
+        display: block;
+        font-size: 26px;
+        font-weight: 300;
+        color: var(--hi);
+        line-height: 1;
+      }
+      .stat-l {
+        display: block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 13px 24px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: opacity 0.2s;
+        white-space: nowrap;
+      }
+      .btn-white {
+        background: var(--hi);
+        color: var(--bg);
+      }
+      .btn-white:hover {
+        opacity: 0.86;
+      }
+      .btn-ghost {
+        border: 1px solid var(--line);
+        color: var(--muted);
+      }
+      .btn-ghost:hover {
+        border-color: var(--line2);
+        color: var(--hi);
+      }
+
+      /* SECTION BASE */
+      section {
+        border-bottom: 1px solid var(--line);
+      }
+      .wrap {
+        padding: 80px 48px;
+      }
+
+      .sec-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 52px;
+      }
+      h2 {
+        font-size: clamp(26px, 3.2vw, 42px);
+        font-weight: 300;
+        color: var(--hi);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+      .lbl {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* SERVICES */
+      .svc-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+      .svc {
+        padding: 36px 32px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        transition: background 0.2s;
+      }
+      .svc:hover {
+        background: var(--bg2);
+      }
+      .svc-n {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--dim);
+        margin-bottom: 24px;
+      }
+      .svc-t {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--hi);
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+      .svc-d {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-bottom: 20px;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        color: var(--dim);
+        border: 1px solid var(--dim);
+        padding: 3px 8px;
+        letter-spacing: 0.03em;
+        transition: all 0.2s;
+      }
+      .svc:hover .tag {
+        color: var(--muted);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* STACK */
+      .stk {
+        border-top: 1px solid var(--line);
+      }
+      .stk-row {
+        display: grid;
+        grid-template-columns: 148px 1fr;
+        border-bottom: 1px solid var(--line);
+        align-items: start;
+      }
+      .stk-cat {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 22px 24px 22px 0;
+        border-right: 1px solid var(--line);
+      }
+      .stk-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 18px 0 18px 28px;
+      }
+      .stk-item {
+        font-size: 13px;
+        color: var(--text);
+        padding: 5px 12px;
+        border: 1px solid var(--line);
+        cursor: default;
+        transition: all 0.18s;
+      }
+      .stk-item:hover {
+        border-color: var(--line2);
+        color: var(--hi);
+        background: var(--bg2);
+      }
+
+      /* PROCESS */
+      .proc-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+      .step {
+        padding: 36px 28px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .step-n {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--dim);
+        margin-bottom: 28px;
+      }
+      .step-t {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--hi);
+        margin-bottom: 8px;
+      }
+      .step-d {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* WHY */
+      .why-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: start;
+      }
+      .why-list {
+        border-top: 1px solid var(--line);
+      }
+      .wi {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 16px;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--line);
+        align-items: start;
+      }
+      .wi-n {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--dim);
+        padding-top: 2px;
+      }
+      .wi-t {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--hi);
+        margin-bottom: 4px;
+      }
+      .wi-d {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        background: var(--bg2);
+        position: sticky;
+        top: 80px;
+      }
+      .card-top {
+        padding: 32px;
+        border-bottom: 1px solid var(--line);
+      }
+      .av {
+        width: 52px;
+        height: 52px;
+        border: 1px solid var(--line2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--hi);
+        margin-bottom: 18px;
+        background: var(--bg3);
+      }
+      .card-name {
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--hi);
+        margin-bottom: 4px;
+      }
+      .card-role {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+      }
+      .clink {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 32px;
+        border-bottom: 1px solid var(--line);
+        text-decoration: none;
+        font-size: 13px;
+        color: var(--muted);
+        transition: all 0.18s;
+      }
+      .clink:last-child {
+        border-bottom: none;
+      }
+      .clink:hover {
+        color: var(--hi);
+        background: var(--bg3);
+      }
+      .arr {
+        opacity: 0.35;
+        font-size: 13px;
+      }
+
+      /* ORDER */
+      .order-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: start;
+      }
+      .order-title {
+        font-size: clamp(22px, 2.8vw, 36px);
+        font-weight: 300;
+        color: var(--hi);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        margin-bottom: 16px;
+      }
+      .order-desc {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 32px;
+      }
+      .order-alts-lbl {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        color: var(--dim);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .order-alts {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .alink {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border: 1px solid var(--line);
+        text-decoration: none;
+        font-size: 13px;
+        color: var(--muted);
+        transition: all 0.18s;
+      }
+      .alink:hover {
+        border-color: var(--line2);
+        color: var(--hi);
+        background: var(--bg2);
+      }
+
+      /* FORM */
+      .fbox {
+        background: var(--bg2);
+        border: 1px solid var(--line);
+        padding: 36px;
+      }
+      .fb-title {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--hi);
+        margin-bottom: 4px;
+      }
+      .fb-sub {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+      .fg {
+        margin-bottom: 14px;
+      }
+      .fg label {
+        display: block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .fg input,
+      .fg select,
+      .fg textarea {
+        width: 100%;
+        background: var(--bg3);
+        border: 1px solid var(--line);
+        color: var(--hi);
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        padding: 11px 13px;
+        outline: none;
+        border-radius: 0;
+        -webkit-appearance: none;
+        appearance: none;
+        transition: border-color 0.18s;
+      }
+      .fg input:focus,
+      .fg select:focus,
+      .fg textarea:focus {
+        border-color: var(--line2);
+      }
+      .fg input::placeholder,
+      .fg textarea::placeholder {
+        color: var(--dim);
+      }
+      .fg select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='%23444'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 13px center;
+        padding-right: 32px;
+        cursor: pointer;
+      }
+      .fg select option {
+        background: #1c1c1c;
+      }
+      .fg textarea {
+        resize: vertical;
+        min-height: 88px;
+      }
+      .fg-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .btn-sub {
+        width: 100%;
+        padding: 15px;
+        background: var(--hi);
+        color: var(--bg);
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        border: none;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        margin-top: 4px;
+      }
+      .btn-sub:hover {
+        opacity: 0.85;
+      }
+      .fn {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        color: var(--dim);
+        text-align: center;
+        margin-top: 10px;
+        letter-spacing: 0.04em;
+      }
+
+      /* FOOTER */
+      footer {
+        padding: 28px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .fl {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .fc {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--dim);
+      }
+      .fls {
+        display: flex;
+        gap: 24px;
+      }
+      .fls a {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--dim);
+        text-decoration: none;
+        transition: color 0.18s;
+      }
+      .fls a:hover {
+        color: var(--muted);
+      }
+
+      /* ANIM */
+      @keyframes up {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-meta {
+        opacity: 0;
+        animation: up 0.5s ease 0.05s forwards;
+      }
+      h1 {
+        opacity: 0;
+        animation: up 0.6s ease 0.15s forwards;
+      }
+      .hero-bottom {
+        opacity: 0;
+        animation: up 0.6s ease 0.3s forwards;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1024px) {
+        nav,
+        footer {
+          padding: 0 24px;
+        }
+        nav {
+          height: 56px;
+        }
+        .wrap {
+          padding: 56px 24px;
+        }
+        .hero {
+          padding: 96px 24px 56px;
+        }
+        .hero-meta {
+          left: 24px;
+          right: 24px;
+        }
+        .svc-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .proc-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .why-wrap {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .card {
+          position: static;
+        }
+        .order-wrap {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        footer {
+          flex-direction: column;
+          gap: 12px;
+          padding: 24px;
+          text-align: center;
+        }
+      }
+      @media (max-width: 640px) {
+        .nav-links {
+          display: none;
+        }
+        .hero-meta {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+        }
+        .hero-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .hero-aside {
+          align-items: flex-start;
+        }
+        .svc-grid {
+          grid-template-columns: 1fr;
+        }
+        .stk-row {
+          grid-template-columns: 1fr;
+        }
+        .stk-cat {
+          border-right: none;
+          padding-bottom: 0;
+        }
+        .stk-items {
+          padding-left: 0;
+          padding-top: 10px;
+        }
+        .proc-grid {
+          grid-template-columns: 1fr;
+        }
+        .fg-row {
+          grid-template-columns: 1fr;
+        }
+        .fbox {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-logo">AK / Dev</div>
+      <ul class="nav-links">
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#stack">Стек</a></li>
+        <li><a href="#process">Процесс</a></li>
+        <li><a href="#contact">Заказать</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-meta">
+        <span class="hero-tag">Full Stack Developer — 10+ лет опыта</span>
+        <span class="status"
+          ><span class="dot"></span>Доступен для проектов</span
+        >
+      </div>
+
+      <h1>Алексей
+        <br /</h1>
+
+      <div class="hero-bottom">
+        <p class="hero-desc">
+          Разрабатываю веб-приложения, API и инструменты автоматизации. PHP,
+          Python, JavaScript. Архитектура с расчетом на годы вперед.
+        </p>
+        <div class="hero-aside">
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-n">10+</span><span class="stat-l">лет</span>
+            </div>
+            <div class="stat">
+              <span class="stat-n">200+</span
+              ><span class="stat-l">проектов</span>
+            </div>
+            <div class="stat">
+              <span class="stat-n">98%</span
+              ><span class="stat-l">довольны</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-white">Обсудить проект →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="wrap">
+        <div class="sec-top">
+          <h2>Услуги</h2>
+          <span class="lbl">Что я делаю</span>
+        </div>
+        <div class="svc-grid">
+          <div class="svc">
+            <div class="svc-n">01</div>
+            <div class="svc-t">Веб-приложения под ключ</div>
+            <p class="svc-d">
+              От концепции до запуска. Проектирую архитектуру, пишу бэкенд и
+              фронтенд, настраиваю деплой. Готовый продукт, а не список задач.
+            </p>
+            <div class="tags">
+              <span class="tag">React</span><span class="tag">Vue</span
+              ><span class="tag">Laravel</span><span class="tag">Node.js</span>
+            </div>
+          </div>
+
+          <div class="svc">
+            <div class="svc-n">02</div>
+            <div class="svc-t">API и интеграции</div>
+            <p class="svc-d">
+              REST, GraphQL, вебхуки. Подключу любой сервис. Ваши системы будут
+              работать в связке без сбоев и задержек.
+            </p>
+            <div class="tags">
+              <span class="tag">REST API</span><span class="tag">GraphQL</span
+              ><span class="tag">Webhooks</span><span class="tag">OAuth</span>
+            </div>
+          </div>
+
+          <div class="svc">
+            <div class="svc-n">03</div>
+            <div class="svc-t">Автоматизация процессов</div>
+            <p class="svc-d">
+              Скрипты, парсеры, боты, планировщики. Всё что делается руками —
+              можно автоматизировать. Освобождаю время для важного.
+            </p>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">Selenium</span
+              ><span class="tag">Cron</span
+              ><span class="tag">Telegram Bot</span>
+            </div>
+          </div>
+
+          <div class="svc">
+            <div class="svc-n">04</div>
+            <div class="svc-t">CMS и e-commerce</div>
+            <p class="svc-d">
+              WordPress, кастомные CMS, интернет-магазины с нуля или доработка
+              существующих. Скорость, безопасность, удобство.
+            </p>
+            <div class="tags">
+              <span class="tag">WordPress</span
+              ><span class="tag">WooCommerce</span><span class="tag">PHP</span
+              ><span class="tag">MySQL</span>
+            </div>
+          </div>
+
+          <div class="svc">
+            <div class="svc-n">05</div>
+            <div class="svc-t">Рефакторинг и оптимизация</div>
+            <p class="svc-d">
+              Медленный сайт, legacy-код, технический долг — разберусь. Делаю
+              системы быстрее, стабильнее и дешевле в поддержке.
+            </p>
+            <div class="tags">
+              <span class="tag">Аудит</span><span class="tag">Performance</span
+              ><span class="tag">SEO-тех</span><span class="tag">DevOps</span>
+            </div>
+          </div>
+
+          <div class="svc">
+            <div class="svc-n">06</div>
+            <div class="svc-t">Парсинг и data mining</div>
+            <p class="svc-d">
+              Сбор данных с любых сайтов, структурирование, экспорт. Анализ
+              рынка, конкурентов и цен с актуальными данными.
+            </p>
+            <div class="tags">
+              <span class="tag">Scrapy</span><span class="tag">Puppeteer</span
+              ><span class="tag">Proxy</span><span class="tag">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section id="stack">
+      <div class="wrap">
+        <div class="sec-top">
+          <h2>Технологии</h2>
+          <span class="lbl">Стек</span>
+        </div>
+        <div class="stk">
+          <div class="stk-row">
+            <div class="stk-cat">Backend</div>
+            <div class="stk-items">
+              <span class="stk-item">PHP</span
+              ><span class="stk-item">Python</span
+              ><span class="stk-item">Node.js</span
+              ><span class="stk-item">Laravel</span
+              ><span class="stk-item">Django</span
+              ><span class="stk-item">FastAPI</span
+              ><span class="stk-item">Express</span>
+            </div>
+          </div>
+          <div class="stk-row">
+            <div class="stk-cat">Frontend</div>
+            <div class="stk-items">
+              <span class="stk-item">JavaScript</span
+              ><span class="stk-item">TypeScript</span
+              ><span class="stk-item">React</span
+              ><span class="stk-item">Vue.js</span
+              ><span class="stk-item">Next.js</span
+              ><span class="stk-item">Nuxt</span>
+            </div>
+          </div>
+          <div class="stk-row">
+            <div class="stk-cat">Базы данных</div>
+            <div class="stk-items">
+              <span class="stk-item">MySQL</span
+              ><span class="stk-item">PostgreSQL</span
+              ><span class="stk-item">MongoDB</span
+              ><span class="stk-item">Redis</span
+              ><span class="stk-item">Elasticsearch</span>
+            </div>
+          </div>
+          <div class="stk-row">
+            <div class="stk-cat">DevOps</div>
+            <div class="stk-items">
+              <span class="stk-item">Docker</span
+              ><span class="stk-item">Nginx</span
+              ><span class="stk-item">AWS</span
+              ><span class="stk-item">Linux</span
+              ><span class="stk-item">CI/CD</span
+              ><span class="stk-item">Git</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+      <div class="wrap">
+        <div class="sec-top">
+          <h2>Как работаю</h2>
+          <span class="lbl">Процесс</span>
+        </div>
+        <div class="proc-grid">
+          <div class="step">
+            <div class="step-n">01</div>
+            <div class="step-t">Погружение в задачу</div>
+            <p class="step-d">
+              Изучаю задачу, задаю правильные вопросы. Не берусь за проект, пока
+              не понимаю цель и ограничения.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-n">02</div>
+            <div class="step-t">Архитектура и план</div>
+            <p class="step-d">
+              Проектирую решение, оцениваю сроки и бюджет. Фиксируем всё
+              письменно до начала работы.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-n">03</div>
+            <div class="step-t">Разработка итерациями</div>
+            <p class="step-d">
+              Работаю итерациями, каждые 2-3 дня — демо и обратная связь.
+              Никаких черных ящиков.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-n">04</div>
+            <div class="step-t">Сдача и поддержка</div>
+            <p class="step-d">
+              Тестирование, деплой, документация. Поддержка после запуска. Вы не
+              остаетесь один с кодом.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section>
+      <div class="wrap">
+        <div class="sec-top">
+          <h2>Почему я</h2>
+          <span class="lbl">Преимущества</span>
+        </div>
+        <div class="why-wrap">
+          <div class="why-list">
+            <div class="wi">
+              <span class="wi-n">01</span>
+              <div>
+                <div class="wi-t">Думаю как партнер, не подрядчик</div>
+                <p class="wi-d">
+                  Предложу альтернативу, если вижу лучшее решение.
+                  Бизнес-результат важнее технического задания.
+                </p>
+              </div>
+            </div>
+            <div class="wi">
+              <span class="wi-n">02</span>
+              <div>
+                <div class="wi-t">Код, который можно читать</div>
+                <p class="wi-d">
+                  Пишу с расчетом на другого разработчика. Документирую. Следую
+                  стандартам. Без хаоса и костылей.
+                </p>
+              </div>
+            </div>
+            <div class="wi">
+              <span class="wi-n">03</span>
+              <div>
+                <div class="wi-t">Дедлайны — это серьезно</div>
+                <p class="wi-d">
+                  Если сказал в пятницу — сдам в пятницу. Форс-мажор —
+                  предупреждаю заранее, не постфактум.
+                </p>
+              </div>
+            </div>
+            <div class="wi">
+              <span class="wi-n">04</span>
+              <div>
+                <div class="wi-t">Всегда на связи</div>
+                <p class="wi-d">
+                  Отвечаю в течение часа в рабочее время. Статус проекта — по
+                  запросу, мгновенно.
+                </p>
+              </div>
+            </div>
+            <div class="wi">
+              <span class="wi-n">05</span>
+              <div>
+                <div class="wi-t">Международный опыт</div>
+                <p class="wi-d">
+                  Работаю с клиентами из РФ, Европы и США. Понимаю разные рынки
+                  и стандарты качества.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <div class="card-top">
+                <div class="av">AK</div>
+                <div class="card-name">Алексей</div>
+                <div class="card-role">Full Stack Developer</div>
+              </div>
+              <a
+                href="https://www.upwork.com/freelancers/~01a1ede96b0e266a15"
+                target="_blank"
+                class="clink"
+                ><span>Upwork</span><span class="arr">↗</span></a
+              >
+              <a
+                href="https://kwork.ru/user/leadergreed"
+                target="_blank"
+                class="clink"
+                ><span>Kwork</span><span class="arr">↗</span></a
+              >
+              <a
+                href="https://github.com/greeeden"
+                target="_blank"
+                class="clink"
+                ><span>GitHub</span><span class="arr">↗</span></a
+              >
+              <a href="mailto:leadergreed@gmail.com" class="clink"
+                ><span>leadergreed@gmail.com</span><span class="arr">→</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="sec-top">
+          <h2>Заказать проект</h2>
+          <span class="lbl">Оценка и заказ</span>
+        </div>
+
+        <div class="order-wrap">
+          <div>
+            <div class="order-title">Опишите задачу — оценю бесплатно</div>
+            <p class="order-desc">
+              Заполните форму. Я получу письмо с деталями и отвечу в течение
+              нескольких часов. Берусь только если уверен в результате.
+            </p>
+            <div class="order-alts-lbl">Или напрямую через</div>
+            <div class="order-alts">
+              <a
+                href="https://www.upwork.com/freelancers/~01a1ede96b0e266a15"
+                target="_blank"
+                class="alink"
+                ><span>Upwork</span><span>↗</span></a
+              >
+              <a
+                href="https://kwork.ru/user/leadergreed"
+                target="_blank"
+                class="alink"
+                ><span>Kwork</span><span>↗</span></a
+              >
+              <a
+                href="https://github.com/greeeden"
+                target="_blank"
+                class="alink"
+                ><span>GitHub</span><span>↗</span></a
+              >
+            </div>
+          </div>
+
+          <div class="fbox">
+            <div class="fb-title">Запрос на оценку</div>
+            <div class="fb-sub">
+              Откроется почтовый клиент с готовым письмом
+            </div>
+
+            <div class="fg-row">
+              <div class="fg">
+                <label>Имя</label
+                ><input id="f-name" type="text" placeholder="Иван Петров" />
+              </div>
+              <div class="fg">
+                <label>Контакт</label
+                ><input
+                  id="f-contact"
+                  type="text"
+                  placeholder="Telegram / email"
+                />
+              </div>
+            </div>
+            <div class="fg">
+              <label>Тип задачи</label>
+              <select id="f-type">
+                <option value="">— выберите —</option>
+                <option>Веб-приложение под ключ</option>
+                <option>API и интеграции</option>
+                <option>Автоматизация / боты</option>
+                <option>CMS / интернет-магазин</option>
+                <option>Рефакторинг и оптимизация</option>
+                <option>Парсинг и data mining</option>
+                <option>Другое</option>
+              </select>
+            </div>
+            <div class="fg-row">
+              <div class="fg">
+                <label>Бюджет</label>
+                <select id="f-budget">
+                  <option value="">— примерно —</option>
+                  <option>до $300</option>
+                  <option>$300 – $1 000</option>
+                  <option>$1 000 – $5 000</option>
+                  <option>$5 000+</option>
+                  <option>Обсудим</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label>Сроки</label>
+                <select id="f-deadline">
+                  <option value="">— когда нужно —</option>
+                  <option>Срочно (до недели)</option>
+                  <option>1–2 недели</option>
+                  <option>1 месяц</option>
+                  <option>Не горит</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg">
+              <label>Описание</label
+              ><textarea
+                id="f-desc"
+                placeholder="Что нужно сделать? Цель? Есть ли ТЗ или референсы?"
+              ></textarea>
+            </div>
+            <button class="btn-sub" onclick="sendMail()">
+              Отправить запрос →
+            </button>
+            <div class="fn">Письмо полетит на leadergreed@gmail.com</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="fl">AK / Leadergreed</div>
+      <div class="fc">2026 — Алексей</div>
+      <div class="fls">
+        <a
+          href="https://www.upwork.com/freelancers/~01a1ede96b0e266a15"
+          target="_blank"
+          >Upwork</a
+        >
+        <a href="https://kwork.ru/user/leadergreed" target="_blank">Kwork</a>
+        <a href="https://github.com/greeeden" target="_blank">GitHub</a>
+      </div>
+    </footer>
+
+    <script>
+      function sendMail() {
+        var name = document.getElementById("f-name").value.trim();
+        var contact = document.getElementById("f-contact").value.trim();
+        var type = document.getElementById("f-type").value;
+        var budget = document.getElementById("f-budget").value;
+        var deadline = document.getElementById("f-deadline").value;
+        var desc = document.getElementById("f-desc").value.trim();
+
+        var subject = "Заявка с сайта" + (type ? ": " + type : "");
+        var body =
+          "Имя: " +
+          (name || "—") +
+          "\n" +
+          "Контакт: " +
+          (contact || "—") +
+          "\n\n" +
+          "Тип задачи: " +
+          (type || "—") +
+          "\n" +
+          "Бюджет: " +
+          (budget || "—") +
+          "\n" +
+          "Сроки: " +
+          (deadline || "—") +
+          "\n\n" +
+          "Описание:\n" +
+          (desc || "—");
+
+        window.location.href =
+          "mailto:leadergreed@gmail.com" +
+          "?subject=" +
+          encodeURIComponent(subject) +
+          "&body=" +
+          encodeURIComponent(body);
+      }
+    </script>
+  </body>
+</html>
