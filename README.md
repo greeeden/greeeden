@@ -37,8 +37,8 @@ available: true
 ---
 
 ```
-200+ проектов  ·  98% клиентов возвращаются  ·  RU / EN
+200+ проектов  ·  98% клиентов возвращаются 
 ```
 
 **Hire me →**
-[Upwork](https://www.upwork.com/freelancers/~01a1ede96b0e266a15) · [Kwork](https://kwork.ru/user/leadergreed) · [leadergreed@gmail.com](mailto:leadergreed@gmail.com)
+[Upwork](https://www.upwork.com/freelancers/~01a1ede96b0e266a15) · [leadergreed@gmail.com](mailto:leadergreed@gmail.com)
